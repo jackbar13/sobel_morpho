@@ -2,7 +2,7 @@
         ============================================================================
         Name        : sobel.c
         Author      : kdesnos
-        Version     : 1.2
+        Version     : 1.3
         Copyright   : CECILL-C
         Description :
         ============================================================================
@@ -29,12 +29,15 @@ void sobel(int width, int height, unsigned char *input, unsigned char *output) {
                input[(j + 1) * width + i + 1];
 
       output[(j-1)*width + i] = fminf(sqrtf(gx * gx + gy * gy), 255);
+      output = output/2;
     }
   }
-
+  
   // Fill the left and right sides
   for (j = 0; j < height - 2; j++) {
     output[j * width] = 0;
     output[(j + 1) * width - 1] = 0;
+    
   }
+  
 }
